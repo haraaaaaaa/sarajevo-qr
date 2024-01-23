@@ -11,6 +11,20 @@ app.set("trust proxy", true);
 app.use(express.json());
 app.use(cors());
 
+// Required Models
+require("./models/User");
+require("./models/Location");
+
+// Required Auth Routes
+const adminSignUpRouter = require("./routes/auth/admin-signup");
+const signUpRouter = require("./routes/auth/signup");
+const signInRouter = require("./routes/auth/signin");
+
+// Auth Router Middlewares
+app.use(adminSignUpRouter);
+app.use(signUpRouter);
+app.use(signInRouter);
+
 // Start Function
 const start = async () => {
   try {
