@@ -14,9 +14,9 @@ router.post(
   checkAuth,
   checkGuide,
   [
-    body("name").notEmpty()./*length({ min: 5, max: 50 }).*/ withMessage("Morate unijeti naziv lokacije!"),
-    body("summary").notEmpty()./*length({ min: 5, max: 200 }).*/ withMessage("Morate unijeti kratak opis lokacije!"),
-    body("description").notEmpty()./*length({ min: 5, max: 2000 }).*/ withMessage("Morate unijeti detaljan opis lokacije!"),
+    body("name").notEmpty().isLength({ min: 5, max: 50 }).withMessage("Morate unijeti naziv lokacije!"),
+    body("summary").notEmpty().isLength({ min: 5, max: 200 }).withMessage("Morate unijeti kratak opis lokacije!"),
+    body("description").notEmpty().isLength({ min: 5, max: 2000 }).withMessage("Morate unijeti detaljan opis lokacije!"),
     body("image").notEmpty().withMessage("Morate unijeti sliku lokacije!"),
   ],
   async (req, res) => {

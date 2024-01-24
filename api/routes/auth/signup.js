@@ -10,9 +10,9 @@ const { body } = require("express-validator");
 router.post(
   "/api/users/signup",
   [
-    body("username").notEmpty()./*length({ min: 5, max: 25 }).*/ withMessage("Morate unijeti Vaše korisničko ime!"),
-    body("email").notEmpty()./*length({ min: 10, max: 50 }).*/ withMessage("Morate unijeti Vaš E-Mail!"),
-    body("password").notEmpty().trim()./*length({ min: 6, max: 25 }).*/ withMessage("Morate unijeti Vašu lozinku!"),
+    body("username").notEmpty().isLength({ min: 5, max: 25 }).withMessage("Morate unijeti Vaše korisničko ime!"),
+    body("email").notEmpty().isLength({ min: 10, max: 50 }).withMessage("Morate unijeti Vaš E-Mail!"),
+    body("password").notEmpty().trim().isLength({ min: 6, max: 25 }).withMessage("Morate unijeti Vašu lozinku!"),
   ],
   async (req, res) => {
     const { username, email, password } = req.body;
