@@ -8,7 +8,7 @@ Users can scan the QR codes placed at various locations in Sarajevo to instantly
 - **Scan QR codes**: Users can use their smartphones or QR code scanners to scan the QR codes placed at different locations in Sarajevo.
 - **Easy navigation**: The website provides a user-friendly interface to navigate and explore different locations in Sarajevo.
 - **Location details**: Upon scanning a QR code, users will receive detailed information about the corresponding location.
-- **Tour Guide Registration**: Choosen people will be registered as Tour Guides, thus being able to add & edit & remove certaion locations.
+- **Tour Guide Registration**: Choosen people will be registered as Tour Guides, thus being able to add & edit & remove certain locations.
 
 ## Techologies Used
 
