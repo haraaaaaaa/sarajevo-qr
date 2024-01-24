@@ -11,9 +11,10 @@ app.set("trust proxy", true);
 app.use(express.json());
 app.use(cors());
 
-// Required Models
+// Required Models & Middlewares
 require("./models/User");
 require("./models/Location");
+require("./middlewares/current-user");
 
 // Required Auth Routes
 const adminSignUpRouter = require("./routes/auth/admin-signup");
