@@ -17,12 +17,12 @@ require("./models/Location");
 require("./middlewares/current-user");
 
 // Required Auth Routes
-const adminSignUpRouter = require("./routes/auth/admin-signup");
+const guideSignUpRouter = require("./routes/auth/guide-signup");
 const signUpRouter = require("./routes/auth/signup");
 const signInRouter = require("./routes/auth/signin");
 
 // Auth Router Middlewares
-app.use(adminSignUpRouter);
+app.use(guideSignUpRouter);
 app.use(signUpRouter);
 app.use(signInRouter);
 

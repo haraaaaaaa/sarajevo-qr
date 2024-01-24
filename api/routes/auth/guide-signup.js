@@ -27,7 +27,7 @@ router.post(
       username,
       email,
       password: hashedPassword,
-      role: "admin",
+      role: "guide",
     });
 
     res.status(201).send(createdUserDoc);

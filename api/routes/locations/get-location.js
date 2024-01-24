@@ -10,7 +10,7 @@ router.get("/sarajevo/:id", checkAuth, [check("id").isMongoId().withMessage("ID 
   const { id } = req.params;
 
   const locationDoc = await Location.findById(id);
-  if(!locationDoc) return res.status(404).({message: "Lokacija nije pronađena u bazi!"});
+  if (!locationDoc) return res.status(404).send({ message: "Lokacija nije pronađena u bazi!" });
 
   res.status(200).send(locationDoc);
 });
