@@ -3,6 +3,8 @@ const router = express.Router();
 
 const checkAuth = require("../../middlewares/check-auth");
 
+const { check } = require("express-validator");
+
 const mongoose = require("mongoose");
 const Location = mongoose.model("locations");
 

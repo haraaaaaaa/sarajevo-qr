@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const checkAuth = require("../../middlewares/check-auth");
-const checkAdmin = require("../../middlewares/check-admin");
+const checkGuide = require("../../middlewares/check-guide");
+
+const { body } = require("express-validator");
 
 const mongoose = require("mongoose");
 const Location = mongoose.model("locations");
@@ -10,11 +12,11 @@ const Location = mongoose.model("locations");
 router.post(
   "/api/locations",
   checkAuth,
-  checkAdmin,
+  checkGuide,
   [
-    body("name").notEmpty().length({ min: 5, max: 50 }).withMessage("Morate unijeti naziv lokacije!"),
-    body("summary").notEmpty().length({ min: 5, max: 200 }).withMessage("Morate unijeti kratak opis lokacije!"),
-    body("description").notEmpty().length({ min: 5, max: 2000 }).withMessage("Morate unijeti detaljan opis lokacije!"),
+    body("name").notEmpty()./*length({ min: 5, max: 50 }).*/ withMessage("Morate unijeti naziv lokacije!"),
+    body("summary").notEmpty()./*length({ min: 5, max: 200 }).*/ withMessage("Morate unijeti kratak opis lokacije!"),
+    body("description").notEmpty()./*length({ min: 5, max: 2000 }).*/ withMessage("Morate unijeti detaljan opis lokacije!"),
     body("image").notEmpty().withMessage("Morate unijeti sliku lokacije!"),
   ],
   async (req, res) => {

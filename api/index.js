@@ -21,10 +21,20 @@ const guideSignUpRouter = require("./routes/auth/guide-signup");
 const signUpRouter = require("./routes/auth/signup");
 const signInRouter = require("./routes/auth/signin");
 
+// Required Location Routes
+const postLocationRouter = require("./routes/locations/post-location");
+const getLocationRouter = require("./routes/locations/get-location");
+const getLocationsRouter = require("./routes/locations/get-locations");
+
 // Auth Router Middlewares
 app.use(guideSignUpRouter);
 app.use(signUpRouter);
 app.use(signInRouter);
+
+// Location Router Middlewares
+app.use(postLocationRouter);
+app.use(getLocationRouter);
+app.use(getLocationsRouter);
 
 // Start Function
 const start = async () => {

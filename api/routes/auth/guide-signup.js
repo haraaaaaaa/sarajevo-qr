@@ -1,16 +1,21 @@
 const express = require("express");
+const router = express.Router();
+
+const checkAdmin = require("../../middlewares/check-admin");
+
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
-const { hash } = require("bcrypt");
 
-const router = express.Router();
+const { hash } = require("bcrypt");
+const { body } = require("express-validator");
 
 router.post(
   "/api/users/signup",
+  checkAdmin,
   [
-    body("username").notEmpty().length({ min: 5, max: 25 }).withMessage("Morate unijeti Vaše korisničko ime!"),
-    body("email").notEmpty().length({ min: 10, max: 50 }).withMessage("Morate unijeti Vaš E-Mail!"),
-    body("password").notEmpty().trim().length({ min: 6, max: 25 }).withMessage("Morate unijeti Vašu lozinku!"),
+    body("username").notEmpty()./*length({ min: 5, max: 25 }).*/ withMessage("Morate unijeti Vaše korisničko ime!"),
+    body("email").notEmpty()./*length({ min: 10, max: 50 }).*/ withMessage("Morate unijeti Vaš E-Mail!"),
+    body("password").notEmpty().trim()./*length({ min: 6, max: 25 }).*/ withMessage("Morate unijeti Vašu lozinku!"),
   ],
   async (req, res) => {
     const { username, email, password } = req.body;

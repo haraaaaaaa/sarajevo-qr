@@ -1,11 +1,14 @@
 const express = require("express");
+const router = express.Router();
+
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
+
 const bcrypt = require("bcrypt");
+const { body } = require("express-validator");
+
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET_KEY } = require("../../config/keys.js");
-
-const router = express.Router();
 
 router.post(
   "/api/users/signin",
