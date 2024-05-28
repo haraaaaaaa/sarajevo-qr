@@ -8,7 +8,7 @@ const { check } = require("express-validator");
 const mongoose = require("mongoose");
 const Location = mongoose.model("locations");
 
-router.get("/sarajevo/:id", checkAuth, [check("id").isMongoId().withMessage("ID lokacije nije validan!")], async (req, res) => {
+router.get("/api/locations/:id", checkAuth, [check("id").isMongoId().withMessage("ID lokacije nije validan!")], async (req, res) => {
   const { id } = req.params;
 
   const locationDoc = await Location.findById(id);
