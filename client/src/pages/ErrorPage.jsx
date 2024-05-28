@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../shared/UI/Button";
+import Button from "../shared/UIElements/Button";
 import { NavLink } from "react-router-dom";
 
 const ErrorPage = ({ errorTitle, errorContent }) => {

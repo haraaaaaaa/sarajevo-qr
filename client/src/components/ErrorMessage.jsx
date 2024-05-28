@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../shared/UI/Button";
+import Button from "../shared/UIElements/Button";
 import { Link } from "react-router-dom";
 
 const ErrorMessage = ({ errorTitle, errorContent }) => {

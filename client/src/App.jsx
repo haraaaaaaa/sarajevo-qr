@@ -12,21 +12,7 @@ const App = () => {
     <Router>
       <Navbar />
       <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/add-location" exact>
-          <AddLocation />
-        </Route>
-        <Route path="/locations" exact>
-          <LocationList />
-        </Route>
-        <Route path="/locations/:id">
-          <LocationDetails />
-        </Route>
-        <Route path="*">
-          <ErrorPage errorTitle={"Stranica nije pronadjena"} errorContent={"Ne mozemo pronaci stranicu koju trazite."} />
-        </Route>
+        <Route path="/" exact element={<Home />} />
       </Switch>
     </Router>
   );

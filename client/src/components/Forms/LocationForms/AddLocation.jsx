@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Button from "../shared/UI/Button";
+import Button from "./../../../shared/UIElements/Button";
 
 const LocationForm = () => {
   const [formData, setFormData] = useState({
