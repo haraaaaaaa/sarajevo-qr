@@ -15,9 +15,10 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/add-location" element={<AddLocation />} />
         <Route exact path="/locations" element={<LocationList />} />
+        <Route exact path="/locations/:id" element={<LocationDetails />} />
         <Route
           exact
-          path="/"
+          path="*"
           element={<ErrorPage errorTitle={"Stranica nije pronadjena"} errorContent={"Ne mozemo pronaci stranicu koju trazite."} />}
         />
       </Routes>
