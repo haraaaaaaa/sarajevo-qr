@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Button from "./../../../shared/UIElements/Button";
+import Button from "../../../shared/UIElements/Button";
 
-const LocationForm = () => {
+const AddLocationForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     summary: "",
@@ -77,4 +77,4 @@ const LocationForm = () => {
   );
 };
 
-export default LocationForm;
+export default AddLocationForm;

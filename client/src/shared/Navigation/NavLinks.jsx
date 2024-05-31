@@ -18,9 +18,23 @@ const NavLinks = () => {
       label: "Lokacije",
       href: "/locations",
     },
-    {
+    token && {
+      label: "Add Location",
+      href: "/add-location",
+    },
+
+    !token && {
       label: "Prijavi se",
-      href: "/login",
+      href: "/signin",
+    },
+
+    !token && {
+      label: "Kreiraj nalog",
+      href: "/signup",
+    },
+    token && {
+      label: "Odjavi se",
+      href: "/signout",
     },
   ];
 
