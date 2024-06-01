@@ -19,4 +19,4 @@ const AuthProvider = ({ children }) => {
 // Custom hook to use the AuthContext in any component
 const useAuth = () => useContext(AuthContext);
 
-export { AuthProvider, useAuth };
+export default useAuth;

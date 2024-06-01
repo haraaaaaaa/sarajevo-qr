@@ -1,8 +1,8 @@
 import React from "react";
-import SignInForm from "../../components/Forms/AuthForms/SignInForm";
+import AddLocationForm from "../../components/Forms/LocationForms/AddLocationForm";
 
 const AddLocation = () => {
-  return <SignInForm />;
+  return <AddLocationForm />;
 };
 
 export default AddLocation;

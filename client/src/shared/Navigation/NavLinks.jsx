@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import useAuth from "../../context/AuthContext";
 import { NavLink, useLocation } from "react-router-dom";
 
 const NavLinks = () => {
@@ -13,13 +14,15 @@ const NavLinks = () => {
     setActiveLink("/");
   };
 
+  const { token } = useAuth();
+
   const links = [
     {
       label: "Lokacije",
       href: "/locations",
     },
     token && {
-      label: "Add Location",
+      label: "Dodaj lokaciju",
       href: "/add-location",
     },
 
@@ -36,23 +39,23 @@ const NavLinks = () => {
       label: "Odjavi se",
       href: "/signout",
     },
-  ];
-
-  return (
-    <ul className="gap-6 z-30 bg-white text-gray-600 font-medium text-md flex items-center">
-      {links.map(({ label, href }) => (
+  ]
+    .filter((link) => link)
+    .map(({ label, href }) => {
+      return (
         <NavLink
-          key={href}
           to={href}
+          key={href}
           className={`outline-orange-400 ${activeLink === href ? "text-orange-500 " : ""}`}
           activeClassName={activeLink === href ? "text-orange-600" : ""}
           onClick={handleNavLinkClick}
         >
           <li className="hover:bg-white cursor-pointer rounded-sm p-2 text-center px-4 transition">{label}</li>
         </NavLink>
-      ))}
-    </ul>
-  );
+      );
+    });
+
+  return <ul className="gap-6 z-30 bg-white text-gray-600 font-medium text-md flex items-center">{links}</ul>;
 };
 
 export default NavLinks;
