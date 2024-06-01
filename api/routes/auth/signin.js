@@ -23,7 +23,7 @@ router.post(
     if (!existingUser) return res.status(401).send({ message: "Korisnik sa tim korisničkim imenom ne postoji!" });
 
     const isMatch = await bcrypt.compare(password, existingUser.password);
-    if (!isMatch) return res.status(401).send({ message: "Neuspješna Autentikacija!" });
+    if (!isMatch) return res.status(401).send({ message: "Pogrešna lozinka!" });
 
     res.status(200).send({
       message: "Uspješna Autentikacija!",
