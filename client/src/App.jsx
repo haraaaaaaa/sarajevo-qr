@@ -6,6 +6,8 @@ import AddLocation from "./components/Forms/LocationForms/AddLocationForm";
 import LocationList from "./pages/locations/LocationList";
 import LocationDetails from "./pages/locations/LocationDetails";
 import ErrorPage from "./pages/ErrorPage";
+import SignIn from "./pages/auth/SignIn";
+import SignUp from "./pages/auth/SignUp";
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
         <Route exact path="/add-location" element={<AddLocation />} />
         <Route exact path="/locations" element={<LocationList />} />
         <Route exact path="/locations/:id" element={<LocationDetails />} />
+        <Route exact path="/signin" element={<SignIn />} />
+        <Route exact path="/signup" element={<SignUp />} />
         <Route
           exact
           path="*"
