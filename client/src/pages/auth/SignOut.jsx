@@ -13,6 +13,7 @@ const SignOut = () => {
     navigate("/");
   }, []);
 
+  window.location.href = "/";
   return <p>Odjavljivanje...</p>;
 };
 

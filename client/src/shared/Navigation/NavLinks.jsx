@@ -14,27 +14,30 @@ const NavLinks = () => {
     setActiveLink("/");
   };
 
-  const { token } = useAuth();
+  const { token, userRole } = useAuth();
 
   const links = [
     {
       label: "Lokacije",
       href: "/locations",
     },
-    token && {
-      label: "Dodaj lokaciju",
-      href: "/add-location",
-    },
+    token &&
+      userRole === "guide" && {
+        label: "Dodaj lokaciju",
+        href: "/add-location",
+      },
 
-    !token && {
-      label: "Prijavi se",
-      href: "/signin",
-    },
+    !token &&
+      !userRole && {
+        label: "Prijavi se",
+        href: "/signin",
+      },
 
-    !token && {
-      label: "Kreiraj nalog",
-      href: "/signup",
-    },
+    !token &&
+      !userRole && {
+        label: "Kreiraj nalog",
+        href: "/signup",
+      },
     token && {
       label: "Odjavi se",
       href: "/signout",

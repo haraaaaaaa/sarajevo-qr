@@ -48,7 +48,7 @@ const SignUpForm = () => {
       authUser(token);
       setMessage(message);
       clearFormData();
-      navigate("/");
+      navigate("/locations");
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         // Check for the specific error message from the server

@@ -1,19 +1,51 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useEffect, useMemo, useContext } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(!localStorage.getItem("token") ? null : localStorage.getItem("token"));
+  const [token, setToken] = useState(() => localStorage.getItem("token"));
+  const [userRole, setUserRole] = useState(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      try {
+        const decodedToken = jwtDecode(storedToken);
+        return decodedToken.role;
+      } catch (error) {
+        console.error("Invalid token:", error);
+        return null;
+      }
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      try {
+        const decodedToken = jwtDecode(storedToken);
+        setUserRole(decodedToken.role);
+      } catch (error) {
+        console.error("Invalid token:", error);
+        setUserRole(null);
+      }
+    }
+  }, [token]);
 
   const authUser = (token) => {
-    const localStorageToken = localStorage.getItem("token");
-    if (localStorageToken !== token) {
+    try {
+      const decodedToken = jwtDecode(token);
+      setToken(token);
+      setUserRole(decodedToken.role);
       localStorage.setItem("token", token);
+    } catch (error) {
+      console.error("Invalid token:", error);
     }
-    setToken(token);
   };
 
-  return <AuthContext.Provider value={{ token, setToken, authUser }}>{children}</AuthContext.Provider>;
+  const value = useMemo(() => ({ token, userRole, setToken, authUser }), [token, userRole]);
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 // Custom hook to use the AuthContext in any component
