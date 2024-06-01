@@ -8,6 +8,7 @@ import LocationDetails from "./pages/locations/LocationDetails";
 import ErrorPage from "./pages/ErrorPage";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
+import SignOut from "./pages/auth/SignOut";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route exact path="/locations/:id" element={<LocationDetails />} />
         <Route exact path="/signin" element={<SignIn />} />
         <Route exact path="/signup" element={<SignUp />} />
+        <Route exact path="/signout" element={<SignOut />} />
         <Route
           exact
           path="*"

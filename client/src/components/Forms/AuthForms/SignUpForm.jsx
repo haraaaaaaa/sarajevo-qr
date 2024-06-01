@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "../../../shared/UIElements/Button";
 
 const SignUpForm = () => {
   const { authUser } = useAuth();
@@ -67,8 +68,8 @@ const SignUpForm = () => {
 
   return (
     <div className="mx-2">
-      <div className="max-w-sm mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <h1 className="text-2xl font-bold mb-4 dark:text-white">Sign Up</h1>
+      <div className="max-w-sm my-12 mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow ">
+        <h1 className="text-2xl font-bold mb-4 my-5 text-gray-800">Kreiraj nalog</h1>
 
         {message && <div className="text-red-500 mb-4">{message}</div>}
 
@@ -78,7 +79,7 @@ const SignUpForm = () => {
               type="text"
               name="username"
               id="username"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
               placeholder=" "
               required
               autoComplete="off"
@@ -99,7 +100,7 @@ const SignUpForm = () => {
               type="email"
               name="email"
               id="email"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
               placeholder=" "
               required
               autoComplete="off"
@@ -119,7 +120,7 @@ const SignUpForm = () => {
               type="password"
               name="password"
               id="password"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
               placeholder=" "
               required
               autoComplete="off"
@@ -138,7 +139,7 @@ const SignUpForm = () => {
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
               placeholder=" "
               required
               autoComplete="off"
@@ -153,17 +154,13 @@ const SignUpForm = () => {
             </label>
           </div>
 
-          <button
-            type="submit"
-            className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
-          >
-            Kreiraj nalog
-          </button>
-          <p className="mt-4 text-gray-500 dark:text-gray-200">
+          <Button type="submit">Kreiraj nalog</Button>
+
+          <p className="font-medium text-gray-600">
             Već imaš nalog? Prijavi se{" "}
             <Link to={"/signin"}>
               {" "}
-              <u> ovdje. </u>{" "}
+              <u className="text-orange-500"> ovdje. </u>{" "}
             </Link>
           </p>
         </form>
