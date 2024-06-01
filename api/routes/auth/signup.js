@@ -4,6 +4,9 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
 
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET_KEY } = require("../../config/keys.js");
+
 const { hash } = require("bcrypt");
 const { body } = require("express-validator");
 
@@ -32,7 +35,11 @@ router.post(
       role: "tourist",
     });
 
-    res.status(201).send(createdUserDoc);
+    const token = jwt.sign({ id: createdUserDoc._id, role: createdUserDoc.role }, JWT_SECRET_KEY, {
+      expiresIn: "12h",
+    });
+
+    res.status(201).send({ createdUserDoc, token });
   }
 );
 

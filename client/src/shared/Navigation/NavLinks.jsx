@@ -26,13 +26,16 @@ const NavLinks = () => {
         label: "Dodaj lokaciju",
         href: "/add-location",
       },
-
+    token &&
+      userRole === "admin" && {
+        label: "Dodaj vodica",
+        href: "/guide-signup",
+      },
     !token &&
       !userRole && {
         label: "Prijavi se",
         href: "/signin",
       },
-
     !token &&
       !userRole && {
         label: "Kreiraj nalog",

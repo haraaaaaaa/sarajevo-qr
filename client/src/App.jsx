@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import SignOut from "./pages/auth/SignOut";
+import GuideSignUp from "./pages/auth/GuideSignUp";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route exact path="/signin" element={<SignIn />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/signout" element={<SignOut />} />
+        <Route exact path="/guide-signup" element={<GuideSignUp />} />
         <Route
           exact
           path="*"

@@ -4,35 +4,27 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
 
-const { hash } = require("bcrypt");
+const checkAuth = require("../../middlewares/check-auth");
+const checkAdmin = require("../../middlewares/check-admin");
+
 const { body } = require("express-validator");
 
 router.post(
   "/api/users/guide-signup",
-  [
-    body("username").notEmpty().isLength({ min: 5, max: 25 }).withMessage("Morate unijeti Vaše korisničko ime!"),
-    body("email").notEmpty().isLength({ min: 10, max: 50 }).withMessage("Morate unijeti Vaš E-Mail!"),
-    body("password").notEmpty().trim().isLength({ min: 6, max: 25 }).withMessage("Morate unijeti Vašu lozinku!"),
-  ],
+  checkAuth,
+  checkAdmin,
+  [body("username").notEmpty().isLength({ min: 5, max: 25 }).withMessage("Morate unijeti korisničko ime!")],
   async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username } = req.body;
 
-    const emailCheck = await User.findOne({ email });
-    if (emailCheck) return res.status(409).send({ message: "E-mail adresa je već u upotrebi!" });
+    const userDoc = await User.findOne({ username });
+    if (!userDoc) return res.status(409).send({ message: "Korisnik sa tim korisničkim imenom ne postoji!" });
 
-    const usernameCheck = await User.findOne({ username });
-    if (usernameCheck) return res.status(409).send({ message: "Korisničko ime je već u upotrebi!" });
+    userDoc.role = "guide";
 
-    const hashedPassword = await hash(password, 10);
+    const updatedUserDoc = await userDoc.save();
 
-    const createdUserDoc = await User.create({
-      username,
-      email,
-      password: hashedPassword,
-      role: "guide",
-    });
-
-    res.status(201).send(createdUserDoc);
+    res.status(201).send(updatedUserDoc);
   }
 );
 

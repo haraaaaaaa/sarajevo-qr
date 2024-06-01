@@ -19,7 +19,12 @@ const AddLocationForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/locations", formData);
+      await axios.post("http://localhost:5000/locations", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       setFormData({
         name: "",
         summary: "",
