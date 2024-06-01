@@ -8,7 +8,7 @@ const { hash } = require("bcrypt");
 const { body } = require("express-validator");
 
 router.post(
-  "/api/users/signup",
+  "/api/users/guide-signup",
   [
     body("username").notEmpty().isLength({ min: 5, max: 25 }).withMessage("Morate unijeti Vaše korisničko ime!"),
     body("email").notEmpty().isLength({ min: 10, max: 50 }).withMessage("Morate unijeti Vaš E-Mail!"),
