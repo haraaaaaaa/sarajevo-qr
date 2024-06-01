@@ -9,6 +9,7 @@ const SignUpForm = () => {
   const navigate = useNavigate();
 
   const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     username: "",
@@ -36,7 +37,7 @@ const SignUpForm = () => {
 
     // Check if passwords match before making the API call
     if (formData.password !== formData.confirmPassword) {
-      setMessage("Passwords don't match. Please try again.");
+      setMessage("Lozinke se ne poklapaju.");
       return;
     }
 
@@ -50,15 +51,17 @@ const SignUpForm = () => {
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         // Check for the specific error message from the server
-        if (error.response.data.message === "Username already in use") {
-          setUsernameError("Username already in use"); // Set the username error message
+        if (error.response.data.message === "Korisničko ime je već u upotrebi!") {
+          setUsernameError("Korisničko ime je već u upotrebi!"); // Set the username error message
+        } else if (error.response.data.message === "E-mail adresa je već u upotrebi!") {
+          setEmailError("E-mail adresa je već u upotrebi!"); // Set the email error message
         } else {
           setMessage(error.response.data.message); // Set the error message received from the server
         }
       } else {
-        setMessage("An error occurred. Please try again later.");
+        setMessage("Desila se greška, molimo pokušajte kasnije.");
       }
-      console.error("Error signing up:", error);
+      console.error("Error while signing up: ", error);
     }
   };
 
@@ -75,7 +78,7 @@ const SignUpForm = () => {
               type="text"
               name="username"
               id="username"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
               placeholder=" "
               required
               autoComplete="off"
@@ -84,9 +87,9 @@ const SignUpForm = () => {
             />
             <label
               htmlFor="username"
-              className="flex peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              className="flex peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-focus:dark:text-orange-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Username
+              Korisničko ime
             </label>
             {usernameError && <div className="text-red-500 mb-4">{usernameError}</div>}
           </div>
@@ -96,7 +99,7 @@ const SignUpForm = () => {
               type="email"
               name="email"
               id="email"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
               placeholder=" "
               required
               autoComplete="off"
@@ -105,17 +108,18 @@ const SignUpForm = () => {
             />
             <label
               htmlFor="email"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-focus:dark:text-orange-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Email address
+              E-mail adresa
             </label>
+            {emailError && <div className="text-red-500 mb-4">{emailError}</div>}
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="password"
               name="password"
               id="password"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
               placeholder=" "
               required
               autoComplete="off"
@@ -124,9 +128,9 @@ const SignUpForm = () => {
             />
             <label
               htmlFor="password"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-focus:dark:text-orange-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Password
+              Lozinka
             </label>
           </div>
           <div className="relative z-0 w-full mb-6 group">
@@ -134,7 +138,7 @@ const SignUpForm = () => {
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-orange-500 focus:outline-none focus:ring-0 focus:border-orange-600 peer"
               placeholder=" "
               required
               autoComplete="off"
@@ -143,23 +147,23 @@ const SignUpForm = () => {
             />
             <label
               htmlFor="confirmPassword"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-orange-600 peer-focus:dark:text-orange-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Confirm password
+              Potvrdi lozinku
             </label>
           </div>
 
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
           >
-            Sign Up
+            Kreiraj nalog
           </button>
           <p className="mt-4 text-gray-500 dark:text-gray-200">
-            Already have an account{" "}
+            Već imaš nalog? Prijavi se{" "}
             <Link to={"/signin"}>
               {" "}
-              <u> Sign In here </u>{" "}
+              <u> ovdje. </u>{" "}
             </Link>
           </p>
         </form>

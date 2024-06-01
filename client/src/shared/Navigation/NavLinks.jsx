@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useAuth from "../../context/AuthContext";
+//import useAuth from "../../context/AuthContext";
 import { NavLink, useLocation } from "react-router-dom";
 
 const NavLinks = () => {
@@ -14,14 +14,14 @@ const NavLinks = () => {
     setActiveLink("/");
   };
 
-  const { token } = useAuth();
+  //const { token } = useAuth();
 
   const links = [
     {
       label: "Lokacije",
       href: "/locations",
     },
-    token && {
+    /*token && {
       label: "Dodaj lokaciju",
       href: "/add-location",
     },
@@ -38,7 +38,7 @@ const NavLinks = () => {
     token && {
       label: "Odjavi se",
       href: "/signout",
-    },
+    },*/
   ]
     .filter((link) => link)
     .map(({ label, href }) => {

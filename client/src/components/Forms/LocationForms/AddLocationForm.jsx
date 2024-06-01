@@ -40,7 +40,7 @@ const AddLocationForm = () => {
         value={name}
         onChange={handleChange}
         autoComplete="off"
-        className="block w-full border-gray-300 border-solid border-b-2 p-2 mb-4 focus:outline-none focus:border-blue-500"
+        className="block w-full border-gray-300 border-solid border-b-2 p-2 mb-4 focus:outline-none focus:border-orange-600"
       />
 
       <input
@@ -50,7 +50,7 @@ const AddLocationForm = () => {
         value={summary}
         onChange={handleChange}
         autoComplete="off"
-        className="block w-full border-gray-300 border-solid border-b-2 p-2 mb-4 focus:outline-none focus:border-blue-500"
+        className="block w-full border-gray-300 border-solid border-b-2 p-2 mb-4 focus:outline-none focus:border-orange-600"
       />
 
       <textarea
@@ -59,7 +59,7 @@ const AddLocationForm = () => {
         value={description}
         onChange={handleChange}
         autoComplete="off"
-        className="block w-full border-gray-300 border-solid border-b-2 p-2 mb-4 focus:outline-none focus:border-blue-500"
+        className="block w-full border-gray-300 border-solid border-b-2 p-2 mb-4 focus:outline-none focus:border-orange-600"
       ></textarea>
 
       <input
@@ -69,7 +69,7 @@ const AddLocationForm = () => {
         value={image}
         onChange={handleChange}
         autoComplete="off"
-        className="block w-full border-gray-300 border-solid border-b-2 p-2 mb-4 focus:outline-none focus:border-blue-500"
+        className="block w-full border-gray-300 border-solid border-b-2 p-2 mb-4 focus:outline-none focus:border-orange-600"
       />
 
       <Button type="submit">Dodaj lokaciju</Button>
