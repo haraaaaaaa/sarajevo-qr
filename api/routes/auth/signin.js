@@ -25,11 +25,13 @@ router.post(
     const isMatch = await bcrypt.compare(password, existingUser.password);
     if (!isMatch) return res.status(401).send({ message: "Pogrešna lozinka!" });
 
+    const token = jwt.sign({ id: existingUser._id, role: existingUser.role }, JWT_SECRET_KEY, {
+      expiresIn: "12h",
+    });
+
     res.status(200).send({
       message: "Uspješna Autentikacija!",
-      token: jwt.sign({ id: existingUser._id, role: existingUser.role }, JWT_SECRET_KEY, {
-        expiresIn: "12h",
-      }),
+      token,
     });
   }
 );

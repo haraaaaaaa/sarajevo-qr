@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET_KEY } = require("../config/keys");
+const { JWT_SECRET_KEY } = require("./../config/keys");
 
 module.exports = (req, res, next) => {
   try {
@@ -7,6 +7,5 @@ module.exports = (req, res, next) => {
     const decodedToken = jwt.verify(token, JWT_SECRET_KEY);
     req.currentUser = decodedToken;
   } catch (error) {}
-
   next();
 };
