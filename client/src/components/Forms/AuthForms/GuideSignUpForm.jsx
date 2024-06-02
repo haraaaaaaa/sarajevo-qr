@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../shared/UIElements/Button";
+import { useAuth } from "../../../context/AuthContext";
 
 const GuideSignUpForm = () => {
-  const { authUser } = useAuth();
-
+  const { token } = useAuth();
+  console.log(token);
   const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
@@ -29,14 +29,16 @@ const GuideSignUpForm = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/users/guide-signup", formData);
-      const { token } = response.data;
-      authUser(token);
+      const response = await axios.put("http://localhost:5000/api/users/guide-signup", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       clearFormData();
-      navigate("/");
+      navigate("/guide-signup");
     } catch (error) {
       handleServerError(error);
-      console.error("Error while signing in:", error);
+      console.error("Error while creating a new guide", error);
     }
   };
 

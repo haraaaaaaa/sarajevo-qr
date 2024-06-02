@@ -18,7 +18,7 @@ const LocationList = () => {
         const locationData = response.data;
         setLocations(locationData);
       } catch (error) {
-        setError("Failed to fetch locations.");
+        setError("Greška prilikom dobavljanja lokacija.");
       }
       setIsLoading(false);
     };

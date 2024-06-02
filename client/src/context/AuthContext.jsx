@@ -1,29 +1,16 @@
-import React, { createContext, useState, useEffect, useMemo, useContext } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(() => localStorage.getItem("token"));
-  const [userRole, setUserRole] = useState(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      try {
-        const decodedToken = jwtDecode(storedToken);
-        return decodedToken.role;
-      } catch (error) {
-        console.error("Invalid token:", error);
-        return null;
-      }
-    }
-    return null;
-  });
+  const [token, setToken] = useState(!localStorage.getItem("token") ? null : localStorage.getItem("token"));
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
+    if (token) {
       try {
-        const decodedToken = jwtDecode(storedToken);
+        const decodedToken = jwtDecode(token);
         setUserRole(decodedToken.role);
       } catch (error) {
         console.error("Invalid token:", error);
@@ -33,22 +20,16 @@ const AuthProvider = ({ children }) => {
   }, [token]);
 
   const authUser = (token) => {
-    try {
-      const decodedToken = jwtDecode(token);
-      setToken(token);
-      setUserRole(decodedToken.role);
+    const localStorageToken = localStorage.getItem("token");
+    if (localStorageToken !== token) {
       localStorage.setItem("token", token);
-    } catch (error) {
-      console.error("Invalid token:", error);
     }
+    setToken(token);
   };
 
-  const value = useMemo(() => ({ token, userRole, setToken, authUser }), [token, userRole]);
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ token, setToken, userRole, authUser }}>{children}</AuthContext.Provider>;
 };
 
-// Custom hook to use the AuthContext in any component
 const useAuth = () => useContext(AuthContext);
 
 export { AuthProvider, useAuth };

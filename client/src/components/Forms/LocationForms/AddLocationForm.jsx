@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Button from "../../../shared/UIElements/Button";
+import { useAuth } from "../../../context/AuthContext";
 
 const AddLocationForm = () => {
+  const { token } = useAuth();
+  console.log(token);
+
   const [formData, setFormData] = useState({
     name: "",
     summary: "",
@@ -19,18 +23,18 @@ const AddLocationForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/locations", formData, {
+      await axios.post("http://localhost:5000/api/locations", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
       setFormData({
         name: "",
         summary: "",
         description: "",
         image: "",
       });
+      navigate("/locations");
     } catch (error) {
       console.error("Error whilst trying to save locations: ", error);
     }
