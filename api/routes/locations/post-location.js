@@ -20,6 +20,7 @@ router.post(
     body("image").notEmpty().withMessage("Morate unijeti sliku lokacije!"),
   ],
   async (req, res) => {
+    console.log(req.headers.authorization.split(" ")[1]);
     const { name, summary, description, image } = req.body;
 
     const nameCheck = await Location.findOne({ name });

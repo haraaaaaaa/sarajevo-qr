@@ -6,7 +6,6 @@ import { useAuth } from "../../../context/AuthContext";
 
 const GuideSignUpForm = () => {
   const { token } = useAuth();
-  console.log(token);
   const navigate = useNavigate();
 
   const [message, setMessage] = useState("");

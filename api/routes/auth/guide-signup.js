@@ -13,7 +13,6 @@ router.put(
   "/api/users/guide-signup",
   [body("username").notEmpty().isLength({ min: 5, max: 25 }).withMessage("Morate unijeti korisničko ime!")],
   async (req, res) => {
-    console.log("GUIDE SIGNUP" + req.headers.authorization.split(" ")[1]);
     const { username } = req.body;
 
     const userDoc = await User.findOne({ username });

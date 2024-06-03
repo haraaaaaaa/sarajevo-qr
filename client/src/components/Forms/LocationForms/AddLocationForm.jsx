@@ -14,6 +14,15 @@ const AddLocationForm = () => {
     image: "",
   });
 
+  const clearFormData = () => {
+    setFormData({
+      name: "",
+      summary: "",
+      description: "",
+      image: "",
+    });
+  };
+
   const { name, summary, description, image } = formData;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,6 +46,7 @@ const AddLocationForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="mt-16 max-w-md mx-auto bg-white p-4 shadow-md rounded-md">
+      <h1 className="text-3xl font-bold mb-6 my-5 text-center text-gray-800">Dodavanje lokacije</h1>
       <input
         type="text"
         placeholder="Naziv"

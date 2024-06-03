@@ -14,7 +14,8 @@ app.use(cors());
 // Required Models & Middlewares
 require("./models/User");
 require("./models/Location");
-require("./middlewares/current-user");
+const currentUser = require("./middlewares/current-user");
+app.use(currentUser);
 
 // Required Auth Routes
 const guideSignUpRouter = require("./routes/auth/guide-signup");
