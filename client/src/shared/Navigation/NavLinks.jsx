@@ -28,7 +28,7 @@ const NavLinks = () => {
       },
     token &&
       userRole === "admin" && {
-        label: "Dodaj vodica",
+        label: "Dodaj vodiča",
         href: "/guide-signup",
       },
     !token &&

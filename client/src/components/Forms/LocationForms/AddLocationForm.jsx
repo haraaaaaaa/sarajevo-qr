@@ -23,17 +23,12 @@ const AddLocationForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/locations", formData, {
+      const response = await axios.post("http://localhost:5000/api/locations", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setFormData({
-        name: "",
-        summary: "",
-        description: "",
-        image: "",
-      });
+      clearFormData();
       navigate("/locations");
     } catch (error) {
       console.error("Error whilst trying to save locations: ", error);
